@@ -1,0 +1,33 @@
+Esta carpeta es donde debes colocar las fotos reales del negocio.
+
+La página (index.html) ya está preparada para mostrarlas automáticamente:
+si el archivo con el nombre exacto existe aquí, se muestra la foto;
+si no existe, se muestra un diseño de respaldo elegante (icono + degradado dorado),
+así que la página nunca se ve rota mientras agregas las fotos poco a poco.
+
+Nombres de archivo que la página reconoce:
+
+  hero-bg.jpg            Foto principal de fondo (portada), idealmente del puente
+                          o de una boda ya realizada. Horizontal, buena resolución.
+
+  bodas-puente.jpg        Foto para la sección "Bodas en el Puente".
+
+  notary-public.jpg       Foto para la sección "Notary Public" (oficina, firma
+                           de documentos, sello notarial, etc).
+
+  formas-residencia.jpg   Foto para la sección "Llenado de Formas".
+
+  galeria-1.jpg
+  galeria-2.jpg
+  galeria-3.jpg
+  galeria-4.jpg
+  galeria-5.jpg
+  galeria-6.jpg           Seis fotos para la galería "Momentos en el Puente"
+                           (bodas reales en el puente y la frontera de El Paso).
+
+Recomendaciones:
+- Usa formato .jpg (o cambia la extensión en index.html si usas .png/.webp).
+- Fotos horizontales funcionan mejor para hero-bg, bodas-puente, notary-public
+  y formas-residencia. Para la galería, fotos cuadradas o 4:3 se ven mejor.
+- Comprime las fotos antes de subirlas (idealmente menos de 500 KB cada una)
+  para que la página cargue rápido en celular.
