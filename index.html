@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Proyecto Profesional</title>
 
   <style>
@@ -12,33 +13,50 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #08111f;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
       color: white;
     }
 
     nav {
+      position: fixed;
+      top: 0;
       width: 100%;
-      padding: 22px 8%;
+      z-index: 1000;
+      padding: 18px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(8, 17, 31, 0.95);
-      position: fixed;
-      top: 0;
-      z-index: 10;
+      background: rgba(5, 12, 24, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    nav h2 {
+    .logo {
       font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    nav .links {
+      display: flex;
+      gap: 28px;
     }
 
     nav a {
-      color: white;
+      color: #dbe7f4;
       text-decoration: none;
-      margin-left: 25px;
       font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: white;
     }
 
     .hero {
@@ -47,104 +65,250 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 120px 20px 60px;
+      padding: 140px 20px 80px;
       background:
-        radial-gradient(circle at top left, #1b3b68, transparent 40%),
-        linear-gradient(135deg, #050912, #0b1b31);
+        radial-gradient(circle at 15% 20%, rgba(44, 106, 190, 0.28), transparent 35%),
+        radial-gradient(circle at 85% 30%, rgba(77, 180, 255, 0.15), transparent 35%),
+        linear-gradient(135deg, #050914, #0a1830 60%, #06111f);
     }
 
     .hero-content {
-      max-width: 900px;
+      max-width: 980px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      font-size: 13px;
+      color: #c8d7e8;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.04);
     }
 
     .hero h1 {
-      font-size: 64px;
-      line-height: 1.05;
-      margin-bottom: 24px;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
     }
 
     .hero p {
-      font-size: 20px;
-      color: #c8d2df;
-      margin-bottom: 35px;
-      line-height: 1.6;
+      max-width: 760px;
+      margin: auto;
+      font-size: 19px;
+      line-height: 1.7;
+      color: #afbdd0;
+    }
+
+    .hero-buttons {
+      margin-top: 36px;
     }
 
     .btn {
       display: inline-block;
-      background: white;
-      color: #08111f;
-      text-decoration: none;
-      padding: 16px 30px;
+      padding: 15px 28px;
+      margin: 7px;
       border-radius: 12px;
-      font-weight: bold;
-      margin: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
     }
 
-    .btn-secundario {
-      background: transparent;
+    .btn-primary {
+      background: white;
+      color: #07111f;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
       color: white;
-      border: 1px solid #7893b5;
+      border: 1px solid #526b88;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    section {
+      padding: 100px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 55px;
+    }
+
+    .section-title span {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #7fa8d8;
+    }
+
+    .section-title h2 {
+      font-size: 44px;
+      margin-top: 12px;
+      margin-bottom: 14px;
+    }
+
+    .section-title p {
+      color: #9fb0c4;
+      line-height: 1.7;
     }
 
     .services {
-      padding: 90px 8%;
-      background: #0d1726;
-      text-align: center;
-    }
-
-    .services h2 {
-      font-size: 38px;
-      margin-bottom: 45px;
+      background: #0a1525;
     }
 
     .cards {
+      max-width: 1150px;
+      margin: auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-      max-width: 1100px;
-      margin: auto;
+      gap: 22px;
     }
 
     .card {
-      background: #121f31;
-      padding: 35px 25px;
-      border-radius: 18px;
-      border: 1px solid #21344c;
+      min-height: 250px;
+      padding: 32px;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #101f34, #0d1929);
+      border: 1px solid #1e344f;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #3e6085;
+    }
+
+    .card .number {
+      font-size: 13px;
+      color: #6d8fb7;
+      margin-bottom: 28px;
     }
 
     .card h3 {
-      margin-bottom: 15px;
-      font-size: 22px;
+      font-size: 24px;
+      margin-bottom: 14px;
     }
 
     .card p {
-      color: #aebbd0;
-      line-height: 1.6;
+      color: #9fb0c4;
+      line-height: 1.65;
+    }
+
+    .why {
+      background: #07111f;
+    }
+
+    .why-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .why h2 {
+      font-size: 48px;
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .why p {
+      color: #9fb0c4;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .features {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature {
+      background: #0d1a2c;
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1px solid #1c314a;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .feature span {
+      color: #8fa3ba;
+      font-size: 14px;
+    }
+
+    .contact {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(52,116,195,0.18), transparent 45%),
+        #091627;
+    }
+
+    .contact-box {
+      max-width: 850px;
+      margin: auto;
+      padding: 65px 35px;
+      border-radius: 28px;
+      border: 1px solid #203a58;
+      background: rgba(12,29,49,0.75);
+    }
+
+    .contact h2 {
+      font-size: 46px;
+      margin-bottom: 16px;
+    }
+
+    .contact p {
+      color: #9fb0c4;
+      max-width: 620px;
+      margin: auto;
+      line-height: 1.7;
     }
 
     footer {
-      padding: 30px;
       text-align: center;
-      background: #07101d;
-      color: #8796aa;
+      padding: 32px 20px;
+      color: #718399;
+      background: #050c16;
+      border-top: 1px solid #14253a;
     }
 
-    @media (max-width: 800px) {
-      nav {
-        padding: 18px 5%;
-      }
-
-      nav div {
+    @media (max-width: 850px) {
+      nav .links {
         display: none;
       }
 
       .hero h1 {
-        font-size: 42px;
+        letter-spacing: -1px;
       }
 
-      .cards {
+      .cards,
+      .why-grid {
         grid-template-columns: 1fr;
+      }
+
+      .section-title h2,
+      .why h2,
+      .contact h2 {
+        font-size: 36px;
+      }
+
+      section {
+        padding: 75px 6%;
       }
     }
   </style>
@@ -153,52 +317,152 @@
 <body>
 
   <nav>
-    <h2>Mi Proyecto</h2>
+    <div class="logo">Mi Proyecto</div>
 
-    <div>
+    <div class="links">
       <a href="#inicio">Inicio</a>
       <a href="#servicios">Servicios</a>
+      <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
     </div>
   </nav>
 
   <section class="hero" id="inicio">
     <div class="hero-content">
-      <h1>Una presencia profesional para llevar tu proyecto más lejos.</h1>
+
+      <div class="badge">Diseño moderno · Atención profesional</div>
+
+      <h1>
+        Una presencia digital que inspira confianza.
+      </h1>
 
       <p>
-        Diseñamos una experiencia clara, moderna y preparada para funcionar
-        perfectamente en computadora y celular.
+        Creamos una experiencia clara, moderna y preparada para presentar
+        tus servicios de forma profesional desde cualquier dispositivo.
       </p>
 
-      <a href="#servicios" class="btn">Ver servicios</a>
-      <a href="#contacto" class="btn btn-secundario">Contactar</a>
+      <div class="hero-buttons">
+        <a href="#servicios" class="btn btn-primary">
+          Ver servicios
+        </a>
+
+        <a href="#contacto" class="btn btn-outline">
+          Hablar con nosotros
+        </a>
+      </div>
+
     </div>
   </section>
 
   <section class="services" id="servicios">
-    <h2>Nuestros servicios</h2>
+
+    <div class="section-title">
+      <span>Servicios</span>
+      <h2>Todo en un solo lugar</h2>
+      <p>
+        Una estructura pensada para presentar tus servicios de forma clara,
+        profesional y fácil de entender.
+      </p>
+    </div>
 
     <div class="cards">
+
       <div class="card">
-        <h3>Servicio 01</h3>
-        <p>Aquí colocaremos el primer servicio real de tu negocio.</p>
+        <div class="number">01</div>
+        <h3>Servicio Principal</h3>
+        <p>
+          Aquí colocaremos la información del servicio más importante
+          de tu negocio.
+        </p>
       </div>
 
       <div class="card">
-        <h3>Servicio 02</h3>
-        <p>Aquí colocaremos el segundo servicio real de tu negocio.</p>
+        <div class="number">02</div>
+        <h3>Servicio Especializado</h3>
+        <p>
+          Podemos explicar beneficios, proceso y lo que hace diferente
+          este servicio.
+        </p>
       </div>
 
       <div class="card">
-        <h3>Servicio 03</h3>
-        <p>Aquí colocaremos el tercer servicio real de tu negocio.</p>
+        <div class="number">03</div>
+        <h3>Atención Personal</h3>
+        <p>
+          Un espacio para destacar la atención, disponibilidad y facilidad
+          de contacto.
+        </p>
       </div>
+
     </div>
+
   </section>
 
-  <footer id="contacto">
-    © 2026 Mi Proyecto
+  <section class="why" id="nosotros">
+
+    <div class="why-grid">
+
+      <div>
+        <h2>
+          Diseñado para convertir visitas en clientes.
+        </h2>
+
+        <p>
+          Una página no solamente debe verse bien. También debe ayudar
+          al visitante a entender rápidamente qué ofreces y cómo contactarte.
+        </p>
+
+        <a href="#contacto" class="btn btn-primary">
+          Comenzar
+        </a>
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <strong>Diseño adaptable</strong>
+          <span>Funciona en celular, tablet y computadora.</span>
+        </div>
+
+        <div class="feature">
+          <strong>Navegación sencilla</strong>
+          <span>El visitante encuentra rápidamente lo que necesita.</span>
+        </div>
+
+        <div class="feature">
+          <strong>Contacto directo</strong>
+          <span>Preparado para conectar teléfono, WhatsApp o formulario.</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="contact" id="contacto">
+
+    <div class="contact-box">
+
+      <h2>¿Listo para comenzar?</h2>
+
+      <p>
+        Muy pronto colocaremos aquí tu información real,
+        teléfono, WhatsApp y una llamada a la acción directa.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary">
+          Contactar
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Mi Proyecto · Todos los derechos reservados
   </footer>
 
 </body>
