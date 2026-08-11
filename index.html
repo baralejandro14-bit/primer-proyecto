@@ -607,6 +607,101 @@
       font-weight: 500;
     }
 
+    /* ---------- Form accordion ---------- */
+    .form-accordion {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(150deg, #17130f, #0e0c09);
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-item:hover {
+      border-color: var(--gold);
+    }
+
+    .form-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 24px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .form-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .form-item-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--cream);
+    }
+
+    .form-item-name span {
+      display: block;
+      font-size: 12px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .form-toggle {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .toggle-icon {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .form-item[open] .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .form-item-body {
+      padding: 0 28px 30px;
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+    }
+
+    .form-item-body p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .form-item-body .step-subtitle:first-child {
+      margin-top: 0;
+    }
+
     /* ---------- Process steps (timeline) ---------- */
     .process {
       max-width: 900px;
@@ -908,6 +1003,24 @@
       font-weight: 300;
     }
 
+    .consulta-grid {
+      max-width: 980px;
+      margin: 50px auto 0;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .consulta-grid .card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .consulta-grid .btn {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
     /* ---------- Staggered reveal ---------- */
     .cards .card:nth-child(1),
     .overview-grid .overview-card:nth-child(1) { transition-delay: 0.05s; }
@@ -1117,6 +1230,22 @@
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
+      }
+
+      .consulta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-item summary {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .form-item-body {
+        padding: 0 20px 24px;
+        padding-top: 18px;
       }
 
       .process {
@@ -1645,6 +1774,513 @@
 
         <a href="https://wa.me/19158437040" target="_blank" rel="noopener" class="btn btn-gold" style="margin-top:26px;">Solicitar Información</a>
       </div>
+    </div>
+
+    <!-- DETALLE POR FORMULARIO -->
+    <div class="process">
+      <div class="process-heading reveal">
+        <span>Detalle por Formulario</span>
+        <h3>Información específica de cada formulario</h3>
+      </div>
+
+      <div class="form-accordion">
+
+        <!-- I-130 -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">I-130<span>Petición de Familiar Extranjero</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El Formulario I-130 es el formulario que un ciudadano estadounidense o residente
+              permanente legal presenta ante USCIS para establecer que existe una relación familiar
+              calificada con un pariente que desea inmigrar a Estados Unidos. Es el primer paso del
+              proceso familiar migratorio. Por sí solo, no otorga ningún estatus ni beneficio
+              migratorio al beneficiario — únicamente acredita la relación familiar.
+            </p>
+
+            <p class="step-subtitle">Quién lo utiliza</p>
+            <p>
+              Un ciudadano estadounidense o residente permanente legal, en calidad de peticionario,
+              a favor de un familiar elegible (beneficiario) que desea inmigrar a Estados Unidos.
+            </p>
+
+            <p class="step-subtitle">Información que solicitamos al cliente</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Del peticionario: nombre completo, datos de contacto, evidencia de su estatus migratorio y su relación con el beneficiario.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Del beneficiario: nombre completo, datos personales, información sobre su relación con el peticionario, datos de contacto y ubicación actual.</li>
+            </ul>
+
+            <p class="step-subtitle">Documentos que normalmente se necesitan</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Prueba del estatus del peticionario: acta de nacimiento, pasaporte, certificado de naturalización o de ciudadanía, según corresponda.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Acta de matrimonio (si la petición es por cónyuge) o actas de nacimiento (si es por hijo/a, padre/madre o hermano/a).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fotografías tipo pasaporte del peticionario y del beneficiario.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Documentos que acrediten que matrimonios anteriores fueron legalmente terminados, cuando aplique.</li>
+            </ul>
+
+            <p class="step-subtitle">Información o documentos que pueden variar según el caso</p>
+            <p>
+              La evidencia adicional depende de la situación particular de cada persona (matrimonios
+              previos, cambios de nombre, circunstancias específicas del caso). Por eso, la lista
+              exacta de documentos se confirma de manera personalizada durante la consulta con cada
+              cliente.
+            </p>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública de USCIS. Nuestro servicio consiste en ayudar a organizar y preparar la
+              documentación; no determinamos elegibilidad ni garantizamos resultados ante USCIS.
+              No somos abogados y no ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+        <!-- I-130A -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">I-130A<span>Información Suplementaria para el Cónyuge Beneficiario</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El Formulario I-130A se presenta junto con el I-130 en los casos donde la petición es
+              por matrimonio. Proporciona información biográfica adicional sobre el cónyuge extranjero
+              (beneficiario) — como su historial de domicilios, historial de empleo e información de
+              sus padres — que USCIS utiliza como parte de la revisión de la petición familiar.
+            </p>
+
+            <p class="step-subtitle">Quién lo utiliza</p>
+            <p>
+              Lo completa y firma el cónyuge beneficiario (la persona extranjera), no el peticionario.
+              Corresponde únicamente a los casos en que el I-130 se presenta con base en una relación
+              de matrimonio con un cónyuge que es ciudadano estadounidense o residente permanente legal.
+            </p>
+
+            <p class="step-subtitle">Información que solicitamos al cliente</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial de domicilios de los últimos 5 años (dentro y fuera de EE. UU.), con fechas exactas de inicio y fin en cada dirección.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Último domicilio fuera de EE. UU., aunque haya sido hace más de 5 años.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial de empleo de los últimos 5 años: nombre del empleador, dirección, puesto y fechas de cada trabajo (incluyendo periodos de desempleo, estudios o trabajo por cuenta propia).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información de ambos padres: nombre completo (incluyendo apellido de soltera de la madre), fecha de nacimiento, país de nacimiento y domicilio actual, o si algún padre falleció.</li>
+            </ul>
+
+            <p class="step-subtitle">Requisito oficial de USCIS vs. lo que nosotros solicitamos</p>
+            <p>
+              <strong style="color:var(--gold-light);">Requisito oficial:</strong> el cónyuge beneficiario
+              debe completar y firmar el I-130A incluyendo la información biográfica señalada arriba
+              (domicilios, empleo, padres).<br>
+              <strong style="color:var(--gold-light);">Lo que nosotros solicitamos:</strong> pedimos al
+              cliente esa misma información de forma organizada, para verificarla con él y capturarla
+              correctamente en el formulario durante la preparación administrativa.
+            </p>
+
+            <p class="step-subtitle">Relación con el I-130</p>
+            <p>
+              El I-130A no se presenta de forma independiente: acompaña al I-130 únicamente cuando la
+              petición es por cónyuge. Ambos formularios se preparan y se envían juntos como parte del
+              mismo trámite.
+            </p>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública de USCIS. Nuestro servicio consiste en ayudar a organizar y preparar la
+              documentación; no determinamos elegibilidad ni garantizamos resultados ante USCIS.
+              No somos abogados y no ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+        <!-- I-485 -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">I-485<span>Solicitud para Registrar Residencia Permanente o Ajustar Estatus</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El Formulario I-485 es el formulario que utiliza una persona que ya se encuentra
+              físicamente dentro de Estados Unidos para solicitar la residencia permanente (green
+              card), sin necesidad de salir del país.
+            </p>
+
+            <p class="step-subtitle">Quién lo utiliza</p>
+            <p>
+              Puede presentarlo una persona que se encuentra físicamente en Estados Unidos y que
+              califica dentro de alguna de las categorías de elegibilidad reconocidas por USCIS (por
+              ejemplo, categoría familiar, de empleo, asilo, entre otras). La elegibilidad específica
+              depende de la categoría y circunstancias particulares de cada persona, y debe evaluarse
+              caso por caso.
+            </p>
+
+            <p class="step-subtitle">Información que solicitamos al cliente</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identidad: nombre completo, fecha y lugar de nacimiento, nacionalidad.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Entrada a Estados Unidos: fecha, lugar y forma de entrada (documento con el que ingresó, si aplica).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial migratorio: estatus actual y antecedentes migratorios relevantes.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información familiar: estado civil, cónyuge e hijos, si aplica.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial de domicilios y de empleo, conforme a lo que solicite la versión vigente del formulario.</li>
+            </ul>
+
+            <p class="step-subtitle">Documentos que normalmente pueden ser necesarios</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Identificación con fotografía vigente.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Copia del acta de nacimiento.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dos fotografías tipo pasaporte.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Evidencia de la entrada legal a EE. UU. (por ejemplo, el registro I-94), cuando aplique.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Documentos relacionados con la categoría de elegibilidad (por ejemplo, la petición familiar correspondiente, si el caso es de base familiar).</li>
+            </ul>
+
+            <p class="step-subtitle">Información o documentos que pueden variar según el caso</p>
+            <p>
+              La lista exacta de documentos depende de la categoría de elegibilidad y las
+              circunstancias particulares de cada persona; se confirma de manera personalizada
+              durante la consulta.
+            </p>
+
+            <p class="step-subtitle">Otros formularios que pueden acompañar al I-485</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>I-864 (Declaración Jurada de Sostenimiento Económico) — típicamente requerido en casos de base familiar.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>I-765 (Solicitud de Autorización de Empleo) — opcional, puede presentarse junto con el I-485.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>I-131 (Documento de Viaje / Permiso Adelantado) — opcional, puede presentarse junto con el I-485.</li>
+            </ul>
+            <p style="margin-top:-6px;">Cuáles de estos formularios aplican depende de la categoría y circunstancias del caso.</p>
+
+            <p class="step-subtitle">Examen médico</p>
+            <p>
+              El I-485 requiere un examen médico migratorio, documentado en el Formulario I-693
+              (Reporte de Examen Médico y Registro de Vacunación), el cual debe ser completado por un
+              médico autorizado por USCIS (cirujano civil) y entregado en sobre sellado. Nuestro
+              servicio no incluye la realización del examen médico; únicamente orientamos sobre este
+              requisito administrativo.
+            </p>
+
+            <div class="step-note">
+              <strong>Tarifa gubernamental:</strong> el I-485 tiene una tarifa de presentación
+              establecida por USCIS. Esta tarifa cambia periódicamente, por lo que el monto exacto
+              debe verificarse directamente en uscis.gov o mediante la calculadora de tarifas de
+              USCIS antes de presentar el formulario.
+            </div>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública de USCIS. Nuestro servicio consiste en ayudar a organizar y preparar la
+              documentación del Formulario I-485; no determinamos elegibilidad, no realizamos el
+              examen médico y no garantizamos aprobación ni ningún resultado migratorio. No somos
+              abogados y no ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+        <!-- I-864 -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">I-864<span>Declaración Jurada de Sostenimiento Económico</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El Formulario I-864 es un documento mediante el cual una persona (el patrocinador) se
+              compromete legalmente a respaldar económicamente al familiar que solicita la residencia
+              permanente, con el fin de demostrar que no dependerá de asistencia pública. Es un
+              contrato exigible ante la ley, no solo un formulario informativo.
+            </p>
+
+            <p class="step-subtitle">Quién lo utiliza</p>
+            <p>
+              Generalmente lo presenta el peticionario que presentó la petición familiar (I-130) a
+              favor del beneficiario.
+            </p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>El patrocinador debe tener al menos 18 años.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Debe tener domicilio en Estados Unidos (o sus territorios).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Debe cumplir con un ingreso mínimo equivalente al 125% de las Guías Federales de Pobreza según el tamaño de su hogar (100% en el caso de militares en servicio activo que patrocinan a su cónyuge o hijo menor).</li>
+            </ul>
+
+            <p class="step-subtitle">Información que solicitamos al patrocinador</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Datos personales y de domicilio.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información sobre el tamaño de su hogar.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información de empleo actual e ingresos.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información fiscal del año más reciente.</li>
+            </ul>
+
+            <p class="step-subtitle">Documentos que normalmente pueden ser necesarios</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Copia o transcripción de la declaración de impuestos federales del año más reciente.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Formularios W-2 o 1099 del año más reciente, como evidencia de ingresos.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Carta de empleo actual, cuando se requiera documentación más reciente.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Evidencia de activos, si se utilizan para calificar en lugar de, o junto con, el ingreso.</li>
+            </ul>
+
+            <p class="step-subtitle">Información que puede variar según el caso</p>
+            <p>
+              Si el patrocinador principal no cumple por sí solo con el requisito de ingreso mínimo,
+              puede requerirse un <strong style="color:var(--gold-light);">patrocinador conjunto</strong>,
+              quien debe presentar su propio I-864 con su propia documentación. Si en cambio se utiliza
+              el ingreso de otro miembro del hogar del patrocinador principal, esa persona debe
+              presentar por separado el <strong style="color:var(--gold-light);">Formulario I-864A</strong>.
+            </p>
+
+            <p class="step-subtitle">Relación con el resto del proceso</p>
+            <p>
+              El I-864 se presenta como parte del expediente de residencia — junto con el I-485
+              (ajuste de estatus dentro de EE. UU.) o durante el proceso consular con el DS-260 —,
+              acompañando a la petición familiar. Es un requisito adicional al I-130, no un sustituto.
+            </p>
+
+            <div class="step-note">
+              <strong>Nota sobre la responsabilidad del patrocinador:</strong> el compromiso del
+              patrocinador generalmente continúa hasta que el familiar se convierta en ciudadano
+              estadounidense o acumule 40 trimestres de trabajo (aproximadamente 10 años).
+            </div>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública de USCIS. Nuestro servicio consiste en ayudar a organizar y preparar la
+              documentación del Formulario I-864; no determinamos elegibilidad ni garantizamos
+              resultados. No somos abogados y no ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+        <!-- DS-260 -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">DS-260<span>Solicitud Electrónica de Visa de Inmigrante y Registro de Extranjero</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El DS-260 es el formulario en línea que utilizan las personas que solicitan una visa
+              de inmigrante para ingresar a Estados Unidos de forma permanente, a través de proceso
+              consular (en una embajada o consulado de EE. UU. en el extranjero). Es administrado por
+              el Departamento de Estado y se presenta electrónicamente a través de CEAC.
+            </p>
+
+            <p class="step-subtitle">Quién lo utiliza</p>
+            <p>
+              Lo utilizan las personas que se encuentran fuera de Estados Unidos y continúan su
+              proceso migratorio mediante proceso consular, en lugar de ajuste de estatus dentro del
+              país — por ejemplo, casos de base familiar, categorías especiales de inmigrante o
+              patrocinio por empleo. Cada persona que solicita la visa de inmigrante (incluyendo
+              cónyuge e hijos que inmigran junto con el solicitante principal) debe presentar su
+              propio DS-260.
+            </p>
+
+            <p class="step-subtitle">Información que solicitamos al cliente</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información personal y biográfica, incluyendo datos del pasaporte (número, fecha de emisión y vencimiento, país de emisión).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Domicilios actuales y anteriores de los últimos 5 años, con fechas exactas.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial de empleo de los últimos 10 años (empleador, dirección, puesto, fechas).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información familiar: cónyuge, hijos, padres y hermanos (nombres completos, fechas de nacimiento, relación).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Historial de visas e historial migratorio previo (visas anteriores, rechazos, deportaciones, si aplica).</li>
+            </ul>
+
+            <p class="step-subtitle">Documentos que normalmente pueden ser necesarios</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Página biográfica del pasaporte.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Acta de nacimiento.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Acta de matrimonio, si aplica.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Documentos de terminación de matrimonios anteriores — divorcio o defunción, si aplica.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Certificados de antecedentes penales (policía) de los lugares donde haya vivido.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Documentos militares o judiciales, cuando corresponda.</li>
+            </ul>
+
+            <p class="step-subtitle">Qué puede variar según el caso</p>
+            <p>
+              Los documentos y certificados de antecedentes penales requeridos dependen de los
+              países y lugares donde haya vivido cada persona, así como de su historial migratorio
+              particular. La lista exacta se confirma de manera personalizada durante la consulta.
+            </p>
+
+            <div class="step-note">
+              <strong>Tarifa gubernamental:</strong> el proceso consular tiene tarifas gubernamentales
+              asociadas (por ejemplo, la tarifa de solicitud de visa de inmigrante y, en casos de base
+              familiar, la tarifa de la Declaración Jurada de Sostenimiento Económico ante NVC). Estas
+              tarifas varían según la categoría del caso y pueden cambiar, por lo que deben verificarse
+              directamente en travel.state.gov antes de continuar con el proceso.
+            </div>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública del Departamento de Estado. Nuestro servicio consiste en ayudar a organizar y
+              preparar la información para el DS-260; no determinamos elegibilidad ni garantizamos
+              resultados. No somos abogados y no ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+        <!-- I-751 -->
+        <details class="form-item reveal">
+          <summary>
+            <span class="form-item-name">I-751<span>Petición para Eliminar las Condiciones de Residencia</span></span>
+            <span class="form-toggle">
+              Ver requisitos
+              <svg class="toggle-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </span>
+          </summary>
+          <div class="form-item-body">
+            <p class="step-subtitle">Para qué sirve</p>
+            <p>
+              El Formulario I-751 se utiliza si la persona es residente permanente condicional
+              porque obtuvo su estatus a través de matrimonio, y desea solicitar que se remuevan las
+              condiciones de su residencia permanente. Si el Green Card se obtuvo por matrimonio y al
+              momento de la aprobación llevaban casados menos de 2 años, se recibe una residencia
+              condicional válida por 2 años; para mantener el estatus de residente permanente, es
+              necesario presentar el I-751 antes de que venza ese periodo.
+            </p>
+
+            <p class="step-subtitle">Quién debe utilizarlo y cuándo se presenta</p>
+            <p>
+              Lo utiliza la persona que obtuvo la residencia condicional a través de matrimonio con
+              un ciudadano estadounidense o residente permanente legal. Debe presentarse durante el
+              periodo de 90 días inmediatamente antes de que venza la residencia condicional (es
+              decir, antes del segundo aniversario de haber recibido la residencia condicional). Si
+              hay hijos dependientes que obtuvieron su residencia condicional el mismo día o dentro
+              de los 90 días posteriores, generalmente pueden incluirse en la misma petición.
+            </p>
+
+            <p class="step-subtitle">Información que solicitamos al cliente</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Datos personales de ambos cónyuges.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fecha en que se obtuvo la residencia condicional.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información sobre hijos dependientes que hayan obtenido residencia condicional junto con el solicitante, si aplica.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Información sobre el tipo de presentación (conjunta, o si corresponde solicitar una excepción/waiver).</li>
+            </ul>
+
+            <p class="step-subtitle">Documentos que normalmente pueden ser necesarios</p>
+            <ul class="step-requirements">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Copia de la tarjeta de residente permanente condicional (green card).</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Acta de matrimonio.</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Evidencia de que el matrimonio se contrajo de buena fe.</li>
+            </ul>
+
+            <p class="step-subtitle">Evidencia relacionada con el matrimonio (presentación conjunta)</p>
+            <p>
+              USCIS espera evidencia de que el matrimonio se llevó a cabo de buena fe, tal como:
+              cuentas bancarias o de crédito conjuntas, declaraciones de impuestos presentadas en
+              conjunto, contratos de arrendamiento o hipoteca conjuntos, pólizas de seguro,
+              fotografías y, en algunos casos, declaraciones de personas que conozcan a la pareja. Si
+              la pareja tiene hijos en común, las actas de nacimiento pueden ser evidencia relevante
+              de la relación.
+            </p>
+
+            <p class="step-subtitle">Situaciones en las que la documentación puede variar</p>
+            <p>
+              La documentación específica depende de si la petición se presenta de forma conjunta
+              con el cónyuge, o si corresponde solicitar una excepción (waiver) a ese requisito. La
+              lista exacta de evidencia se confirma de manera personalizada durante la consulta.
+            </p>
+
+            <p class="step-subtitle">Presentación conjunta y excepciones (waivers)</p>
+            <p>
+              Lo habitual es que el I-751 se presente de forma conjunta entre ambos cónyuges. Sin
+              embargo, según USCIS, puede solicitarse una excepción (waiver) al requisito de
+              presentación conjunta en situaciones como: que el matrimonio haya terminado por
+              divorcio o anulación de buena fe; que el solicitante o su hijo/a haya sufrido abuso o
+              crueldad extrema por parte del cónyuge; que la remoción del solicitante genere
+              dificultades extremas; o que el cónyuge haya fallecido. La aplicabilidad de cualquiera
+              de estas excepciones depende de las circunstancias particulares de cada caso.
+            </p>
+
+            <div class="step-note">
+              <strong>Tarifa gubernamental:</strong> el I-751 tiene una tarifa de presentación
+              establecida por USCIS. Esta tarifa cambia periódicamente, por lo que el monto exacto
+              debe verificarse directamente en uscis.gov o mediante la calculadora de tarifas de
+              USCIS antes de presentar el formulario.
+            </div>
+
+            <div class="disclaimer">
+              Esta información es de carácter general y administrativa, con base en información
+              pública de USCIS. Nuestro servicio consiste en ayudar a organizar y preparar la
+              documentación del Formulario I-751; no determinamos elegibilidad ni garantizamos
+              resultados, incluyendo en casos de excepción (waiver). No somos abogados y no
+              ofrecemos asesoría legal.
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTA TU CASO GRATIS -->
+  <section id="consulta" class="alt-bg">
+    <span class="eyebrow reveal">Servicio Gratuito</span>
+    <div class="section-title reveal">
+      <h2>Consulta tu Caso Gratis</h2>
+      <p>
+        Verifica el estatus de tu trámite migratorio directamente en los
+        sistemas oficiales del gobierno de Estados Unidos.
+      </p>
+    </div>
+
+    <div class="consulta-grid">
+      <div class="card reveal">
+        <div class="overview-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h4>USCIS</h4>
+        <p style="color:var(--gold-light);font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:14px;">Consulta el estatus de tu caso</p>
+        <p>
+          Si tienes un Receipt Number de USCIS (13 caracteres), puedes consultar
+          gratuitamente el estatus de tu caso directamente en el sistema oficial
+          de USCIS.
+        </p>
+        <p style="margin-top:14px;">Ejemplos de prefijos que puede tener tu número:</p>
+        <div class="form-chips" style="margin:14px 0 26px;">
+          <span class="chip">IOE</span>
+          <span class="chip">MSC</span>
+          <span class="chip">LIN</span>
+          <span class="chip">SRC</span>
+          <span class="chip">WAC</span>
+          <span class="chip">EAC</span>
+        </div>
+        <a href="https://egov.uscis.gov/casestatus" target="_blank" rel="noopener" class="btn btn-gold">Consultar mi caso en USCIS</a>
+      </div>
+
+      <div class="card reveal">
+        <div class="overview-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 4 6.4 4 9s-1.5 6.2-4 9c-2.5-2.8-4-6.4-4-9s1.5-6.2 4-9z"/></svg>
+        </div>
+        <h4>NVC / Consular</h4>
+        <p style="color:var(--gold-light);font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:14px;">Consulta tu proceso consular</p>
+        <p>
+          Si tu caso se encuentra en proceso consular (por ejemplo, después de
+          haber sido enviado al National Visa Center), puedes consultarlo
+          directamente en el Centro Electrónico de Solicitudes Consulares (CEAC)
+          del Departamento de Estado.
+        </p>
+        <a href="https://ceac.state.gov/iv/login.aspx" target="_blank" rel="noopener" class="btn btn-gold" style="margin-top:26px;">Consultar mi caso consular</a>
+      </div>
+    </div>
+
+    <div class="disclaimer reveal" style="max-width:900px;margin-left:auto;margin-right:auto;margin-top:40px;text-align:center;">
+      La consulta es gratuita y se realiza directamente mediante los sistemas oficiales
+      del Gobierno de Estados Unidos. Nuestro sitio no almacena números de caso ni
+      información personal utilizada para consultar el estatus.
     </div>
   </section>
 
