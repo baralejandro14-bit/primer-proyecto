@@ -2626,7 +2626,9 @@
     spySections.forEach(sec => spyObserver.observe(sec));
 
     // Solicita Información — validación y confirmación (sin envío a servicios externos)
-    if (requestForm) {
+    const requestForm = document.getElementById('requestForm');
+
+if (requestForm) {
   requestForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -2678,7 +2680,6 @@
 
     } catch (error) {
       console.error(error);
-      alert('No se pudo enviar la solicitud. Por favor intenta nuevamente.');
-    }
-  });
+      alert('No se pudo enviar la solicitud. Por favor intenta nuevamente.')
+    }  });
 }
