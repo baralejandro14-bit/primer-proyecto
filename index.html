@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0f2a52">
   <meta name="description" content="Bodas en el Puente & Notary Public — Ceremonias de boda en el puente, servicios notariales y asistencia administrativa para llenado de formas de residencia en El Paso, Texas.">
   <title>Bodas en el Puente & Notary Public | El Paso, Texas</title>
 
@@ -12,16 +13,56 @@
 
   <style>
     :root {
-      --gold: #c9a24c;
-      --gold-light: #e8cd85;
-      --gold-soft: rgba(201, 162, 76, 0.14);
-      --dark: #0b0a08;
-      --dark-2: #14120e;
-      --dark-3: #1c1812;
-      --cream: #f4ecdd;
-      --muted: #b9ad99;
-      --border: rgba(201, 162, 76, 0.22);
-      --whatsapp: #25d366;
+      /* ---- Identidad: servicios de residencia e inmigración (independiente) ---- */
+      /* Azules institucionales */
+      --blue-900: #0b2142;
+      --blue-800: #0f2a52;
+      --blue-700: #153a6e;
+      --blue-600: #1d4f9c;
+      --blue-500: #2e6fd0;
+      --blue-400: #5b8fdd;
+      --blue-200: #b9cfec;
+      --blue-100: #dbe7f7;
+      --blue-50:  #eef3fa;
+
+      /* Texto */
+      --ink: #132238;
+      --text: #2b3c55;
+      --muted: #4c5e76;
+
+      /* Superficies */
+      --paper: #ffffff;
+      --bg: #ffffff;
+      --border: #d9e2ef;
+
+      /* Acento rojo discreto (avisos importantes, detalles) */
+      --red: #b3323e;
+      --red-soft: rgba(179, 50, 62, 0.07);
+
+      /* Verde: progreso y estatus */
+      --green: #177a4c;
+      --green-bright: #2fae6e;
+      --green-light: #7fd8a8;
+      --green-soft: rgba(23, 122, 76, 0.1);
+
+      --whatsapp: #128a46;
+
+      /* ---- Alias heredados (usados en estilos inline del HTML) ---- */
+      --gold: var(--blue-500);
+      --gold-light: var(--blue-600);
+      --gold-soft: rgba(46, 111, 208, 0.08);
+      --dark: var(--bg);
+      --dark-2: var(--blue-50);
+      --dark-3: var(--blue-100);
+      --cream: var(--ink);
+      --ivory: #f4f8ff;
+      --champagne: var(--blue-200);
+      --champagne-soft: rgba(185, 207, 236, 0.15);
+      --sage: var(--green);
+      --sage-light: var(--green-light);
+      --sage-deep: var(--blue-800);
+      --sage-soft: var(--green-soft);
+      --charcoal: var(--blue-900);
     }
 
     * {
@@ -36,8 +77,8 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: var(--dark);
-      color: var(--cream);
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
     }
 
@@ -54,18 +95,53 @@
     }
 
     ::selection {
-      background: var(--gold);
-      color: var(--dark);
+      background: var(--blue-500);
+      color: #ffffff;
     }
 
-    /* ---------- Reveal on scroll ---------- */
+    /* ---------- Accesibilidad ---------- */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      z-index: 2000;
+      padding: 12px 20px;
+      background: var(--blue-800);
+      color: #ffffff;
+      border-radius: 0 0 10px 10px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 0;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--blue-500);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    /* ---------- Reveal on scroll (el contenido siempre es visible sin JS) ---------- */
     .reveal {
       opacity: 1;
-    transform: translateY(0);
-      transition: opacity 0.9s ease, transform 0.9s ease;
+      transform: none;
     }
 
-    .reveal.visible {
+    html.js .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    html.js .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
@@ -81,16 +157,27 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px 6%;
-      background: rgba(11, 10, 8, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
       transition: padding 0.3s ease;
+    }
+
+    nav::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-800) 0%, var(--blue-500) 72%, var(--red) 100%);
     }
 
     .logo {
       font-size: 22px;
       font-weight: 700;
-      color: var(--cream);
+      color: var(--ink);
       letter-spacing: 0.5px;
       line-height: 1.1;
     }
@@ -99,9 +186,9 @@
       display: block;
       font-family: 'Poppins', sans-serif;
       font-size: 10px;
-      font-weight: 400;
+      font-weight: 500;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-600);
       text-transform: uppercase;
       margin-top: 2px;
     }
@@ -113,7 +200,7 @@
     }
 
     nav .links a {
-      color: var(--muted);
+      color: var(--text);
       font-size: 14.5px;
       font-weight: 500;
       letter-spacing: 0.3px;
@@ -127,13 +214,14 @@
       left: 0;
       bottom: -6px;
       width: 0;
-      height: 1px;
-      background: var(--gold);
+      height: 2px;
+      border-radius: 2px;
+      background: var(--blue-500);
       transition: width 0.3s ease;
     }
 
     nav .links a:hover {
-      color: var(--gold-light);
+      color: var(--blue-600);
     }
 
     nav .links a:hover::after {
@@ -141,7 +229,7 @@
     }
 
     nav .links a.active {
-      color: var(--gold-light);
+      color: var(--blue-600);
     }
 
     nav .links a.active::after {
@@ -150,9 +238,10 @@
 
     .nav-cta {
       padding: 10px 20px !important;
-      border: 1px solid var(--gold);
+      border: 1.5px solid var(--blue-500);
       border-radius: 100px;
-      color: var(--gold-light) !important;
+      color: var(--blue-600) !important;
+      font-weight: 600 !important;
     }
 
     .nav-cta:hover {
@@ -169,12 +258,15 @@
       gap: 5px;
       cursor: pointer;
       z-index: 1100;
+      background: none;
+      border: 0;
+      padding: 8px;
     }
 
     .burger span {
       width: 26px;
       height: 2px;
-      background: var(--gold-light);
+      background: var(--ink);
       transition: 0.3s ease;
     }
 
@@ -190,31 +282,15 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* ---------- Hero ---------- */
+    /* ---------- Hero: la Estatua de la Libertad (fotografía real) ---------- */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 150px 20px 90px;
+      text-align: left;
+      padding: 150px 7% 110px;
       position: relative;
-      background:
-        radial-gradient(circle at 20% 15%, rgba(201, 162, 76, 0.14), transparent 40%),
-        radial-gradient(circle at 82% 85%, rgba(201, 162, 76, 0.10), transparent 45%),
-        linear-gradient(160deg, #0b0a08 0%, #171310 55%, #0b0a08 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(201,162,76,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(201,162,76,0.05) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(circle at 50% 30%, black, transparent 70%);
-      pointer-events: none;
+      background: #081a38;
     }
 
     .hero-bg {
@@ -224,88 +300,152 @@
     }
 
     .hero-bg img {
+      position: relative;
+      z-index: 2;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.4;
+      opacity: 0.22;
     }
 
+    /* Fotografía principal: colores y detalles intactos */
+    .hero-bg img.hero-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 78% 20%;
+      opacity: 1;
+    }
+
+    /* Degradado azul oscuro moderado SOLO en el lado izquierdo, para leer el texto.
+       El rostro, la corona y la antorcha (lado derecho) quedan despejados. */
     .hero-bg::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(11,10,8,0.5) 0%, rgba(11,10,8,0.78) 65%, #0b0a08 100%);
+      z-index: 3;
+      background: linear-gradient(97deg,
+        rgba(8, 26, 56, 0.94) 0%,
+        rgba(8, 26, 56, 0.84) 28%,
+        rgba(9, 28, 60, 0.5) 50%,
+        rgba(10, 30, 62, 0.12) 66%,
+        rgba(10, 30, 62, 0) 76%);
     }
 
     .hero-content {
-      max-width: 940px;
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
       position: relative;
-      z-index: 2;
+      z-index: 4;
     }
 
     .badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       padding: 9px 20px;
-      border: 1px solid var(--border);
+      border: none;
       border-radius: 100px;
       font-size: 12.5px;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--gold-light);
+      color: var(--blue-800);
+      font-weight: 700;
       margin-bottom: 30px;
-      background: var(--gold-soft);
+      background: #ffffff;
+      box-shadow: 0 6px 20px rgba(4, 14, 32, 0.35);
+    }
+
+    .badge::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .hero-ornament {
+      display: flex;
+      justify-content: flex-start;
+      margin: 0 0 26px;
+      opacity: 0.95;
+    }
+
+    .hero-ornament svg {
+      stroke: #8fb4e8;
     }
 
     .hero h1 {
-      font-size: clamp(40px, 7vw, 78px);
+      font-size: clamp(40px, 6.4vw, 74px);
       line-height: 1.08;
       font-weight: 700;
-      color: var(--cream);
+      color: #ffffff;
       margin-bottom: 24px;
+      max-width: 640px;
+      text-shadow: 0 2px 24px rgba(4, 14, 32, 0.45);
     }
 
     .hero h1 em {
       font-style: italic;
-      color: var(--gold-light);
+      color: #a8c9f5;
     }
 
     .hero p {
-      max-width: 680px;
-      margin: 0 auto;
+      max-width: 540px;
+      margin: 0;
       font-size: 18px;
       line-height: 1.8;
-      color: var(--muted);
-      font-weight: 300;
+      color: #dbe6f7;
+      font-weight: 400;
+      text-shadow: 0 1px 14px rgba(4, 14, 32, 0.5);
     }
 
     .hero-buttons {
       margin-top: 40px;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 16px;
     }
 
     .trust-row {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 14px;
       margin-top: 28px;
       font-size: 12.5px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--muted);
-      font-weight: 400;
+      color: #c2d4ee;
+      font-weight: 600;
     }
 
     .trust-row .dot {
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--green-bright);
       display: inline-block;
+    }
+
+    /* Nota de independencia: visible pero discreta */
+    .independent-note {
+      margin: 36px 0 0;
+      max-width: 560px;
+      padding: 12px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 12px;
+      background: rgba(8, 26, 56, 0.55);
+      font-size: 12.5px !important;
+      line-height: 1.7 !important;
+      color: #c2d4ee !important;
     }
 
     .btn {
@@ -323,33 +463,37 @@
     }
 
     .btn-gold {
-      background: linear-gradient(135deg, var(--gold-light), var(--gold));
-      color: #1a1204;
+      background: var(--blue-500);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(10, 30, 62, 0.3);
     }
 
     .btn-gold:hover {
+      background: var(--blue-600);
       transform: translateY(-3px);
-      box-shadow: 0 14px 34px rgba(201, 162, 76, 0.28);
+      box-shadow: 0 14px 34px rgba(29, 79, 156, 0.4);
     }
 
     .btn-outline {
-      color: var(--cream);
-      border: 1px solid rgba(244, 236, 221, 0.35);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.55);
     }
 
     .btn-outline:hover {
-      background: rgba(244, 236, 221, 0.08);
+      background: rgba(255, 255, 255, 0.12);
       transform: translateY(-3px);
     }
 
     .btn-whatsapp {
       background: var(--whatsapp);
-      color: #06280f;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(10, 30, 62, 0.22);
     }
 
     .btn-whatsapp:hover {
+      background: #0e7139;
       transform: translateY(-3px);
-      box-shadow: 0 14px 34px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 14px 34px rgba(18, 138, 70, 0.38);
     }
 
     /* ---------- Sections ---------- */
@@ -359,7 +503,7 @@
     }
 
     .alt-bg {
-      background: var(--dark-2);
+      background: var(--blue-50);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
@@ -369,7 +513,8 @@
       font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-500);
+      font-weight: 600;
       margin-bottom: 16px;
       text-align: center;
     }
@@ -383,7 +528,7 @@
     .section-title h2 {
       font-size: clamp(32px, 4.5vw, 50px);
       font-weight: 700;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 18px;
       line-height: 1.15;
     }
@@ -392,7 +537,7 @@
       color: var(--muted);
       line-height: 1.8;
       font-size: 16.5px;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* ---------- Services overview ---------- */
@@ -408,15 +553,16 @@
       display: block;
       padding: 40px 30px;
       border-radius: 20px;
-      background: linear-gradient(150deg, #17130f, #0e0c09);
+      background: var(--paper);
       border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(15, 42, 82, 0.09);
       transition: all 0.4s ease;
     }
 
     .overview-card:hover {
       transform: translateY(-8px);
-      border-color: var(--gold);
-      box-shadow: 0 22px 44px rgba(0,0,0,0.4);
+      border-color: var(--blue-500);
+      box-shadow: 0 22px 44px rgba(15, 42, 82, 0.13);
     }
 
     .overview-icon {
@@ -426,7 +572,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--border);
+      border: 1px solid var(--blue-100);
       background: var(--gold-soft);
       margin-bottom: 24px;
     }
@@ -434,14 +580,14 @@
     .overview-icon svg {
       width: 26px;
       height: 26px;
-      stroke: var(--gold-light);
+      stroke: var(--blue-600);
     }
 
     .overview-card h3 {
       font-family: 'Poppins', sans-serif;
       font-size: 19px;
       font-weight: 600;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 12px;
     }
 
@@ -449,14 +595,14 @@
       color: var(--muted);
       font-size: 14.5px;
       line-height: 1.75;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 20px;
     }
 
     .overview-link {
       font-size: 13.5px;
       font-weight: 600;
-      color: var(--gold-light);
+      color: var(--blue-600);
       letter-spacing: 0.4px;
       display: inline-flex;
       align-items: center;
@@ -488,10 +634,10 @@
       justify-content: center;
       height: 340px;
       border-radius: 24px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--blue-100);
       background:
-        radial-gradient(circle at 30% 20%, rgba(201,162,76,0.16), transparent 60%),
-        linear-gradient(160deg, #171310, #0d0b08);
+        radial-gradient(circle at 30% 20%, rgba(46, 111, 208, 0.12), transparent 60%),
+        linear-gradient(160deg, #eaf1fb, #dce8f8);
       position: relative;
       overflow: hidden;
     }
@@ -501,7 +647,7 @@
       position: absolute;
       width: 220%;
       height: 220%;
-      background: repeating-linear-gradient(45deg, rgba(201,162,76,0.04) 0 2px, transparent 2px 26px);
+      background: repeating-linear-gradient(45deg, rgba(29, 79, 156, 0.035) 0 2px, transparent 2px 26px);
       top: -60%;
       left: -60%;
     }
@@ -509,7 +655,7 @@
     .visual svg {
       width: 96px;
       height: 96px;
-      stroke: var(--gold-light);
+      stroke: var(--blue-500);
       position: relative;
       z-index: 2;
     }
@@ -536,7 +682,7 @@
 
     .service-text h3 {
       font-size: clamp(28px, 3.5vw, 38px);
-      color: var(--cream);
+      color: var(--ink);
       font-weight: 700;
       margin-bottom: 18px;
     }
@@ -545,7 +691,7 @@
       color: var(--muted);
       line-height: 1.85;
       font-size: 16px;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 26px;
     }
 
@@ -560,7 +706,7 @@
       display: flex;
       align-items: flex-start;
       gap: 12px;
-      color: #d9cfba;
+      color: var(--text);
       font-size: 15px;
       line-height: 1.6;
       font-weight: 400;
@@ -571,23 +717,23 @@
       width: 18px;
       height: 18px;
       margin-top: 3px;
-      stroke: var(--gold);
+      stroke: var(--green);
     }
 
     .disclaimer {
       margin-top: 26px;
       padding: 18px 22px;
-      border-left: 3px solid var(--gold);
-      background: rgba(201, 162, 76, 0.08);
+      border-left: 3px solid var(--blue-500);
+      background: var(--gold-soft);
       border-radius: 6px;
       font-size: 14px;
       line-height: 1.75;
-      color: #e6dcc6;
+      color: var(--text);
       font-weight: 400;
     }
 
     .disclaimer strong {
-      color: var(--gold-light);
+      color: var(--blue-700);
     }
 
     .form-chips {
@@ -599,12 +745,12 @@
 
     .chip {
       padding: 8px 16px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--blue-200);
       border-radius: 100px;
       font-size: 13.5px;
-      color: var(--gold-light);
-      background: rgba(201, 162, 76, 0.06);
-      font-weight: 500;
+      color: var(--blue-700);
+      background: var(--blue-50);
+      font-weight: 600;
     }
 
     /* ---------- Form accordion ---------- */
@@ -619,13 +765,14 @@
     .form-item {
       border: 1px solid var(--border);
       border-radius: 16px;
-      background: linear-gradient(150deg, #17130f, #0e0c09);
+      background: var(--paper);
+      box-shadow: 0 8px 22px rgba(15, 42, 82, 0.07);
       overflow: hidden;
       transition: border-color 0.3s ease;
     }
 
     .form-item:hover {
-      border-color: var(--gold);
+      border-color: var(--blue-500);
     }
 
     .form-item summary {
@@ -646,13 +793,13 @@
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       font-size: 16px;
-      color: var(--cream);
+      color: var(--ink);
     }
 
     .form-item-name span {
       display: block;
       font-size: 12px;
-      color: var(--gold-light);
+      color: var(--blue-600);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-top: 4px;
@@ -664,7 +811,7 @@
       align-items: center;
       gap: 8px;
       font-size: 12.5px;
-      color: var(--gold-light);
+      color: var(--blue-600);
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 600;
@@ -675,7 +822,7 @@
     .toggle-icon {
       width: 18px;
       height: 18px;
-      stroke: var(--gold);
+      stroke: var(--blue-500);
       transition: transform 0.3s ease;
       flex-shrink: 0;
     }
@@ -694,7 +841,7 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.8;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 16px;
     }
 
@@ -718,13 +865,14 @@
       font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 3px;
-      color: var(--gold);
+      color: var(--blue-500);
+      font-weight: 600;
       margin-bottom: 14px;
     }
 
     .process-heading h3 {
       font-size: clamp(26px, 3.5vw, 36px);
-      color: var(--cream);
+      color: var(--ink);
       font-weight: 700;
     }
 
@@ -750,15 +898,14 @@
       font-size: 52px;
       font-weight: 700;
       line-height: 1;
-      color: var(--gold);
-      opacity: 0.9;
+      color: var(--blue-200);
     }
 
     .step-content h4 {
       font-family: 'Poppins', sans-serif;
       font-size: 21px;
       font-weight: 600;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 12px;
     }
 
@@ -766,7 +913,7 @@
       color: var(--muted);
       font-size: 15px;
       line-height: 1.8;
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 16px;
     }
 
@@ -774,7 +921,7 @@
       font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: var(--gold-light);
+      color: var(--blue-600);
       font-weight: 600;
       margin: 18px 0 10px;
     }
@@ -791,7 +938,7 @@
       align-items: flex-start;
       gap: 10px;
       font-size: 14.5px;
-      color: #d9cfba;
+      color: var(--text);
       line-height: 1.65;
       font-weight: 400;
     }
@@ -801,18 +948,23 @@
       width: 16px;
       height: 16px;
       margin-top: 3px;
-      stroke: var(--gold);
+      stroke: var(--green);
     }
 
+    /* Notas importantes: acento rojo discreto */
     .step-note {
       margin-top: 18px;
       padding: 14px 18px;
-      border-left: 3px solid var(--gold);
-      background: rgba(201, 162, 76, 0.08);
+      border-left: 3px solid var(--red);
+      background: var(--red-soft);
       border-radius: 6px;
       font-size: 13.5px;
       line-height: 1.7;
-      color: #e6dcc6;
+      color: var(--text);
+    }
+
+    .step-note strong {
+      color: var(--red);
     }
 
     .location-grid {
@@ -826,15 +978,15 @@
       padding: 16px 18px;
       border: 1px solid var(--border);
       border-radius: 12px;
-      background: rgba(201, 162, 76, 0.04);
+      background: var(--paper);
       font-size: 13px;
       line-height: 1.6;
-      color: #d9cfba;
+      color: var(--muted);
     }
 
     .location-item strong {
       display: block;
-      color: var(--gold-light);
+      color: var(--blue-700);
       font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -848,7 +1000,8 @@
       padding: 50px 44px;
       border-radius: 24px;
       border: 1px solid var(--border);
-      background: linear-gradient(160deg, #17130f, #0e0c09);
+      background: var(--paper);
+      box-shadow: 0 14px 40px rgba(15, 42, 82, 0.1);
     }
 
     .pricing-box .process-heading {
@@ -858,7 +1011,7 @@
     .pricing-box h4 {
       font-family: 'Poppins', sans-serif;
       font-size: 15.5px;
-      color: var(--gold-light);
+      color: var(--blue-700);
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -873,7 +1026,7 @@
       padding: 18px 0;
       border-top: 1px solid var(--border);
       font-size: 15px;
-      color: #d9cfba;
+      color: var(--text);
     }
 
     .price-row:first-of-type {
@@ -885,12 +1038,12 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 28px;
       font-weight: 700;
-      color: var(--gold-light);
+      color: var(--blue-600);
       white-space: nowrap;
     }
 
     .price-row.total {
-      border-top: 1px solid var(--gold);
+      border-top: 1px solid var(--blue-500);
       margin-top: 4px;
     }
 
@@ -899,7 +1052,7 @@
       font-size: 14px;
       line-height: 1.85;
       margin: 14px 0;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     /* ---------- Gallery ---------- */
@@ -908,7 +1061,8 @@
       font-size: 12.5px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--blue-500);
+      font-weight: 600;
       margin-bottom: 26px;
     }
 
@@ -925,8 +1079,8 @@
       aspect-ratio: 4 / 3;
       border-radius: 16px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      background: linear-gradient(160deg, #17130f, #0d0b08);
+      border: 1px solid var(--blue-100);
+      background: linear-gradient(160deg, #eaf1fb, #dce8f8);
     }
 
     .gallery-fallback {
@@ -941,7 +1095,7 @@
     .gallery-fallback svg {
       width: 30px;
       height: 30px;
-      stroke: rgba(201, 162, 76, 0.35);
+      stroke: rgba(29, 79, 156, 0.35);
     }
 
     .gallery-item img {
@@ -958,7 +1112,7 @@
       transform: scale(1.07);
     }
 
-    /* ---------- Cards (used inside Notary section for services) ---------- */
+    /* ---------- Cards (Notary / Consulta) ---------- */
     .cards {
       max-width: 1150px;
       margin: 50px auto 0;
@@ -970,21 +1124,22 @@
     .card {
       padding: 34px 28px;
       border-radius: 18px;
-      background: linear-gradient(150deg, #17130f, #0e0c09);
+      background: var(--paper);
       border: 1px solid var(--border);
+      box-shadow: 0 10px 28px rgba(15, 42, 82, 0.09);
       transition: all 0.35s ease;
     }
 
     .card:hover {
       transform: translateY(-8px);
-      border-color: var(--gold);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      border-color: var(--blue-500);
+      box-shadow: 0 20px 40px rgba(15, 42, 82, 0.12);
     }
 
     .card svg {
       width: 34px;
       height: 34px;
-      stroke: var(--gold);
+      stroke: var(--blue-500);
       margin-bottom: 20px;
     }
 
@@ -992,7 +1147,7 @@
       font-family: 'Poppins', sans-serif;
       font-size: 17px;
       font-weight: 600;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 10px;
     }
 
@@ -1000,7 +1155,7 @@
       color: var(--muted);
       font-size: 14.5px;
       line-height: 1.7;
-      font-weight: 300;
+      font-weight: 400;
     }
 
     .consulta-grid {
@@ -1036,22 +1191,12 @@
     .gallery-grid .gallery-item:nth-child(5) { transition-delay: 0.25s; }
     .gallery-grid .gallery-item:nth-child(6) { transition-delay: 0.3s; }
 
-    .check-list li:nth-child(1) { transition-delay: 0.05s; }
-    .check-list li:nth-child(2) { transition-delay: 0.12s; }
-    .check-list li:nth-child(3) { transition-delay: 0.19s; }
-    .check-list li:nth-child(4) { transition-delay: 0.26s; }
-
-    .step-requirements li:nth-child(1) { transition-delay: 0.05s; }
-    .step-requirements li:nth-child(2) { transition-delay: 0.1s; }
-    .step-requirements li:nth-child(3) { transition-delay: 0.15s; }
-    .step-requirements li:nth-child(4) { transition-delay: 0.2s; }
-
     /* ---------- Contact ---------- */
     .contact {
       text-align: center;
       background:
-        radial-gradient(circle at 50% 0%, rgba(201,162,76,0.14), transparent 50%),
-        var(--dark);
+        radial-gradient(circle at 50% 0%, rgba(46, 111, 208, 0.08), transparent 50%),
+        var(--bg);
     }
 
     .contact-box {
@@ -1059,19 +1204,20 @@
       margin: auto;
       padding: 70px 40px;
       border-radius: 28px;
-      border: 1px solid var(--border);
-      background: rgba(23, 19, 15, 0.6);
+      border: 1px solid var(--blue-700);
+      background: linear-gradient(160deg, var(--blue-800), var(--blue-900));
+      box-shadow: 0 24px 60px rgba(15, 42, 82, 0.25);
     }
 
     .contact-box h2 {
       font-size: clamp(32px, 5vw, 48px);
-      color: var(--cream);
+      color: #ffffff;
       font-weight: 700;
       margin-bottom: 18px;
     }
 
     .contact-box > p {
-      color: var(--muted);
+      color: var(--blue-200);
       max-width: 560px;
       margin: 0 auto 36px;
       line-height: 1.8;
@@ -1084,7 +1230,7 @@
       gap: 12px;
       font-size: 26px;
       font-weight: 600;
-      color: var(--gold-light);
+      color: #ffffff;
       letter-spacing: 1px;
       margin-bottom: 34px;
       font-family: 'Cormorant Garamond', serif;
@@ -1093,7 +1239,7 @@
     .phone-display svg {
       width: 24px;
       height: 24px;
-      stroke: var(--gold);
+      stroke: var(--blue-400);
     }
 
     .contact-buttons {
@@ -1110,7 +1256,8 @@
       padding: 60px 48px;
       border-radius: 28px;
       border: 1px solid var(--border);
-      background: rgba(23, 19, 15, 0.6);
+      background: var(--paper);
+      box-shadow: 0 14px 40px rgba(15, 42, 82, 0.1);
     }
 
     .request-form {
@@ -1135,35 +1282,35 @@
       font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: var(--gold-light);
+      color: var(--blue-700);
       font-weight: 600;
     }
 
     .form-group input,
     .form-group select,
     .form-group textarea {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
+      background: #ffffff;
+      border: 1px solid #c8d5e8;
       border-radius: 12px;
       padding: 16px 18px;
-      color: var(--cream);
+      color: var(--ink);
       font-family: 'Poppins', sans-serif;
       font-size: 15px;
       outline: none;
-      transition: border-color 0.3s ease, background 0.3s ease;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
       width: 100%;
     }
 
     .form-group input::placeholder,
     .form-group textarea::placeholder {
-      color: rgba(185, 173, 153, 0.5);
+      color: #8fa2bc;
     }
 
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--gold);
-      background: rgba(201, 162, 76, 0.06);
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(46, 111, 208, 0.15);
     }
 
     .form-group textarea {
@@ -1189,7 +1336,7 @@
       transform: translateY(-50%);
       width: 16px;
       height: 16px;
-      stroke: var(--gold);
+      stroke: var(--blue-500);
       pointer-events: none;
     }
 
@@ -1204,7 +1351,7 @@
       height: 20px;
       flex-shrink: 0;
       margin-top: 2px;
-      accent-color: var(--gold);
+      accent-color: var(--blue-600);
       cursor: pointer;
     }
 
@@ -1212,7 +1359,7 @@
       font-size: 13.5px;
       color: var(--muted);
       line-height: 1.65;
-      font-weight: 300;
+      font-weight: 400;
       text-transform: none;
       letter-spacing: normal;
     }
@@ -1234,23 +1381,268 @@
     .form-success svg {
       width: 56px;
       height: 56px;
-      stroke: var(--gold);
+      stroke: var(--green-bright);
       margin: 0 auto 20px;
     }
 
     .form-success h3 {
       font-family: 'Cormorant Garamond', serif;
       font-size: 30px;
-      color: var(--cream);
+      color: var(--ink);
       margin-bottom: 14px;
     }
 
     .form-success p {
       color: var(--muted);
       line-height: 1.8;
-      font-weight: 300;
+      font-weight: 400;
       max-width: 480px;
       margin: 0 auto;
+    }
+
+    /* ---------- Solicita Información — grid con tarjeta dinámica ---------- */
+    .request-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .request-grid .request-box {
+      max-width: none;
+      margin: 0;
+    }
+
+    .request-preview {
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background: var(--paper);
+      box-shadow: 0 14px 40px rgba(15, 42, 82, 0.1);
+      padding: 40px 34px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .preview-kicker {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: var(--blue-500);
+      font-weight: 600;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* Tarjeta de seguimiento del proceso (no es un documento oficial) */
+    .preview-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      padding: 32px 28px;
+      background: linear-gradient(150deg, var(--blue-800) 0%, var(--blue-700) 60%, var(--blue-900) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      box-shadow: 0 25px 60px rgba(15, 42, 82, 0.3);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 30px 70px rgba(15, 42, 82, 0.38);
+    }
+
+    .preview-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-bright), var(--blue-400));
+    }
+
+    .preview-card-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .preview-card-head h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 23px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      color: #ffffff;
+    }
+
+    .preview-card-head span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--blue-200);
+      font-weight: 500;
+    }
+
+    .preview-emblem {
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      stroke: var(--blue-200);
+      opacity: 0.9;
+    }
+
+    .preview-field {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 18px;
+    }
+
+    .preview-field label {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blue-200);
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .preview-field .preview-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.45);
+      transition: color 0.35s ease;
+      min-height: 26px;
+    }
+
+    .preview-field .preview-value.filled {
+      color: #ffffff;
+    }
+
+    .preview-status {
+      position: relative;
+      z-index: 1;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .preview-status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .preview-status-row label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--blue-200);
+      font-weight: 600;
+    }
+
+    .preview-status-pct {
+      font-size: 12.5px;
+      color: var(--green-light);
+      font-weight: 700;
+    }
+
+    .preview-status-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .preview-progress-track {
+      height: 6px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.16);
+      overflow: hidden;
+    }
+
+    .preview-progress-bar {
+      height: 100%;
+      width: 4%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--green-bright), var(--green-light));
+      transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .preview-confirm {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+      padding: 24px;
+      background: linear-gradient(160deg, rgba(15, 42, 82, 0.97), rgba(11, 33, 66, 0.98));
+      opacity: 0;
+      transform: scale(0.94);
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .preview-card.is-submitted .preview-confirm {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .preview-confirm svg {
+      width: 46px;
+      height: 46px;
+      stroke: var(--green-bright);
+    }
+
+    .preview-confirm h5 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .preview-confirm p {
+      font-size: 13.5px;
+      color: var(--blue-200);
+      line-height: 1.6;
+      max-width: 260px;
+    }
+
+    .preview-note {
+      margin-top: 22px;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media (min-width: 901px) {
+      .request-grid {
+        grid-template-columns: 1.05fr 0.95fr;
+      }
+
+      .request-preview {
+        position: sticky;
+        top: 110px;
+      }
     }
 
     /* ---------- Floating WhatsApp ---------- */
@@ -1265,15 +1657,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 10px 30px rgba(18, 138, 70, 0.4);
       z-index: 1200;
       animation: pulse 2.4s infinite;
+      transition: transform 0.3s ease;
     }
 
     .float-whatsapp svg {
       width: 30px;
       height: 30px;
-      fill: #0b0a08;
+      fill: #ffffff;
     }
 
     .float-whatsapp:hover {
@@ -1281,30 +1674,61 @@
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
-      70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(18, 138, 70, 0.45); }
+      70% { box-shadow: 0 0 0 16px rgba(18, 138, 70, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(18, 138, 70, 0); }
     }
 
     /* ---------- Footer ---------- */
     footer {
       text-align: center;
-      padding: 40px 20px;
-      background: var(--dark-2);
-      border-top: 1px solid var(--border);
+      padding: 48px 20px;
+      background: var(--blue-900);
+      border-top: 3px solid var(--blue-700);
     }
 
     footer .f-logo {
       font-size: 20px;
-      color: var(--gold-light);
+      color: #ffffff;
       margin-bottom: 8px;
       font-weight: 600;
+      font-family: 'Cormorant Garamond', serif;
     }
 
     footer p {
-      color: var(--muted);
+      color: var(--blue-200);
       font-size: 13.5px;
       line-height: 1.8;
+    }
+
+    footer .footer-note {
+      max-width: 640px;
+      margin: 18px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 12px;
+      color: #8fa8cd;
+    }
+
+    /* ---------- Reducción de movimiento ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+      }
+
+      html.js .reveal {
+        opacity: 1;
+        transform: none;
+      }
     }
 
     /* ---------- Mobile ---------- */
@@ -1355,8 +1779,9 @@
         align-items: flex-start;
         gap: 30px;
         padding: 40px;
-        background: rgba(11, 10, 8, 0.98);
+        background: rgba(255, 255, 255, 0.98);
         border-left: 1px solid var(--border);
+        box-shadow: -18px 0 50px rgba(15, 42, 82, 0.12);
         transform: translateX(100%);
         transition: transform 0.4s ease;
       }
@@ -1435,6 +1860,18 @@
         padding: 44px 22px;
       }
 
+      .request-grid {
+        gap: 30px;
+      }
+
+      .request-preview {
+        padding: 30px 22px;
+      }
+
+      .preview-card {
+        padding: 26px 22px;
+      }
+
       .form-row {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1460,6 +1897,24 @@
         width: 100%;
       }
 
+      .hero {
+        padding: 130px 6% 90px;
+      }
+
+      /* En celular la foto se centra en la estatua y el degradado
+         es vertical y moderado para leer el texto */
+      .hero-bg img.hero-photo {
+        object-position: 72% 18%;
+      }
+
+      .hero-bg::after {
+        background: linear-gradient(188deg,
+          rgba(8, 26, 56, 0.42) 0%,
+          rgba(8, 26, 56, 0.62) 38%,
+          rgba(8, 26, 56, 0.82) 68%,
+          rgba(8, 26, 56, 0.92) 100%);
+      }
+
       .float-whatsapp {
         width: 56px;
         height: 56px;
@@ -1471,6 +1926,9 @@
 </head>
 
 <body>
+
+  <script>document.documentElement.classList.add('js');</script>
+  <a class="skip-link" href="#inicio">Saltar al contenido principal</a>
 
   <nav>
     <a href="#inicio" class="logo">
@@ -1486,21 +1944,31 @@
       <a href="#contacto" class="nav-cta">Contacto</a>
     </div>
 
-    <div class="burger" id="burger">
+    <button class="burger" id="burger" type="button" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="navLinks">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
   </nav>
 
   <!-- HERO -->
   <section class="hero" id="inicio">
     <div class="hero-bg">
+      <img class="hero-photo" src="images/liberty-hero.png" alt="La Estatua de la Libertad al atardecer, vista desde el puerto con el horizonte de Nueva York al fondo">
       <img src="images/hero-bg.jpg" alt="Bodas en el Puente, El Paso" onerror="this.remove()">
     </div>
 
     <div class="hero-content">
       <div class="badge">El Paso, Texas</div>
+
+      <div class="hero-ornament" aria-hidden="true">
+        <svg viewBox="0 0 120 24" width="120" height="24" fill="none" stroke="currentColor" stroke-width="1">
+          <line x1="0" y1="12" x2="42" y2="12"/>
+          <circle cx="54" cy="12" r="7"/>
+          <circle cx="66" cy="12" r="7"/>
+          <line x1="78" y1="12" x2="120" y2="12"/>
+        </svg>
+      </div>
 
       <h1>Bodas en el Puente <br> <em>&amp; Notary Public</em></h1>
 
@@ -1524,6 +1992,11 @@
           Contactar por WhatsApp
         </a>
       </div>
+
+      <p class="independent-note">
+        Servicio privado e independiente. No somos una agencia gubernamental, no somos abogados
+        y no estamos afiliados a USCIS ni a ninguna entidad del gobierno de los Estados Unidos.
+      </p>
     </div>
   </section>
 
@@ -1538,7 +2011,10 @@
     <div class="overview-grid">
       <a href="#bodas" class="overview-card reveal">
         <div class="overview-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7-3 3-3-3 3-7z"/><path d="M2 12h20"/><path d="M6 12v6M18 12v6M9 12v9M15 12v9"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="12" r="4"></circle>
+            <circle cx="16" cy="12" r="4"></circle>
+          </svg>
         </div>
         <h3>Bodas en el Puente</h3>
         <p>Ceremonias organizadas de principio a fin: affidavit, licencia de matrimonio y coordinación completa.</p>
@@ -1578,7 +2054,7 @@
 
     <div class="service-block reveal">
       <div class="visual">
-        <img src="images/bodas-puente.jpg" alt="Ceremonia de boda en el Puente Internacional, El Paso" class="visual-img" onerror="this.remove()">
+        <img src="images/servicio-completo.png" alt="Ceremonia de boda en el Puente Internacional, El Paso" class="visual-img" onerror="this.remove()">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 2l3 7-3 3-3-3 3-7z"/>
           <path d="M2 12h20"/>
@@ -1855,7 +2331,7 @@
     </div>
 
     <div class="visual banner reveal">
-      <img src="images/notary-public.jpg" alt="Servicio de Notary Public" class="visual-img" onerror="this.remove()">
+      <img src="images/notaryy.png" alt="Servicio de Notary Public" class="visual-img" onerror="this.remove()">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4z"/></svg>
     </div>
 
@@ -1902,7 +2378,7 @@
 
     <div class="service-block reverse reveal">
       <div class="visual">
-        <img src="images/formas-residencia.jpg" alt="Asistencia administrativa con formularios de residencia" class="visual-img" onerror="this.remove()">
+        <img src="images/ucisss.png" alt="Asistencia administrativa con formularios de residencia" class="visual-img" onerror="this.remove()">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
           <path d="M14 2v6h6"/>
@@ -2459,6 +2935,7 @@
       </p>
     </div>
 
+    <div class="request-grid">
     <div class="request-box reveal">
       <form id="requestForm" class="request-form" novalidate>
         <div class="form-row">
@@ -2468,7 +2945,7 @@
           </div>
           <div class="form-group">
             <label for="telefono">Número de teléfono</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="(915) 000-0000" required>G\
+            <input type="tel" id="telefono" name="telefono" placeholder="(915) 000-0000" required>
           </div>
         </div>
 
@@ -2529,6 +3006,60 @@
         documentos, lo haremos directamente por un canal seguro.
       </div>
     </div>
+
+    <div class="request-preview reveal">
+      <span class="preview-kicker">Vista previa de tu solicitud</span>
+
+      <div class="preview-card" id="previewCard">
+        <div class="preview-card-head">
+          <div>
+            <h4>Solicitud en Preparación</h4>
+            <span>Bodas en el Puente &amp; Notary Public</span>
+          </div>
+          <svg class="preview-emblem" viewBox="0 0 24 24" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v18"/>
+            <path d="M12 6c-2.5 1-5 1-7-.5 0 4 2 6.5 7 7"/>
+            <path d="M12 6c2.5 1 5 1 7-.5 0 4-2 6.5-7 7"/>
+            <path d="M8 21h8"/>
+          </svg>
+        </div>
+
+        <div class="preview-field">
+          <label>Nombre</label>
+          <div class="preview-value" id="previewNombre">—</div>
+        </div>
+
+        <div class="preview-field">
+          <label>Ciudad</label>
+          <div class="preview-value" id="previewCiudad">—</div>
+        </div>
+
+        <div class="preview-field">
+          <label>Servicio</label>
+          <div class="preview-value" id="previewServicio">—</div>
+        </div>
+
+        <div class="preview-status">
+          <div class="preview-status-row">
+            <label>Estado</label>
+            <span class="preview-status-pct" id="previewPct">0%</span>
+          </div>
+          <div class="preview-status-text" id="previewStatusText">Comienza tu solicitud</div>
+          <div class="preview-progress-track">
+            <div class="preview-progress-bar" id="previewProgressBar"></div>
+          </div>
+        </div>
+
+        <div class="preview-confirm" id="previewConfirm">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+          <h5>Solicitud recibida</h5>
+          <p id="previewConfirmText">Nos pondremos en contacto contigo pronto.</p>
+        </div>
+      </div>
+
+      <p class="preview-note">La tarjeta se actualiza en tiempo real mientras completas el formulario. No es un documento oficial ni una Green Card — es solo una vista previa de tu solicitud.</p>
+    </div>
+    </div>
   </section>
 
   <!-- CONTACTO -->
@@ -2565,6 +3096,11 @@
       El Paso, Texas · 915-843-7040<br>
       © 2026 Bodas en el Puente &amp; Notary Public. Todos los derechos reservados.
     </p>
+    <p class="footer-note">
+      Somos un servicio privado, independiente y no gubernamental. No estamos afiliados a USCIS,
+      al Departamento de Estado ni a ninguna agencia del gobierno de los Estados Unidos.
+      No somos abogados y no ofrecemos asesoría legal.
+    </p>
   </footer>
 
   <script>
@@ -2573,15 +3109,19 @@
     const navLinks = document.getElementById('navLinks');
 
     burger.addEventListener('click', () => {
-  
       burger.classList.toggle('open');
       navLinks.classList.toggle('open');
+      const abierto = burger.classList.contains('open');
+      burger.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+      burger.setAttribute('aria-label', abierto ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
     });
 
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         burger.classList.remove('open');
         navLinks.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+        burger.setAttribute('aria-label', 'Abrir menú de navegación');
       });
     });
 
@@ -2625,6 +3165,86 @@
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
     spySections.forEach(sec => spyObserver.observe(sec));
+
+    // Tarjeta dinámica "Vista previa de tu solicitud" — solo visual, no toca la lógica de envío
+    (function () {
+      const previewCard = document.getElementById('previewCard');
+      const requestFormEl = document.getElementById('requestForm');
+      if (!previewCard || !requestFormEl) return;
+
+      const previewNombre = document.getElementById('previewNombre');
+      const previewCiudad = document.getElementById('previewCiudad');
+      const previewServicio = document.getElementById('previewServicio');
+      const previewStatusText = document.getElementById('previewStatusText');
+      const previewProgressBar = document.getElementById('previewProgressBar');
+      const previewPct = document.getElementById('previewPct');
+
+      const setPreviewField = (el, value) => {
+        if (!el) return;
+        if (value) {
+          el.textContent = value;
+          el.classList.add('filled');
+        } else {
+          el.textContent = '—';
+          el.classList.remove('filled');
+        }
+      };
+
+      const updatePreviewCard = () => {
+        if (previewCard.classList.contains('is-submitted')) return;
+
+        const nombreEl = document.getElementById('nombre_completo');
+        const ciudadEl = document.getElementById('ciudad');
+        const telefonoEl = document.getElementById('telefono');
+        const correoEl = document.getElementById('correo');
+        const servicioEl = document.getElementById('servicio');
+        const consentimientoEl = document.getElementById('consentimiento');
+
+        const nombreVal = nombreEl ? nombreEl.value.trim() : '';
+        const ciudadVal = ciudadEl ? ciudadEl.value.trim() : '';
+        const telefonoVal = telefonoEl ? telefonoEl.value.trim() : '';
+        const correoVal = correoEl ? correoEl.value.trim() : '';
+        const servicioVal = servicioEl && servicioEl.value ? servicioEl.options[servicioEl.selectedIndex].text : '';
+        const consentimientoVal = consentimientoEl ? consentimientoEl.checked : false;
+
+        setPreviewField(previewNombre, nombreVal);
+        setPreviewField(previewCiudad, ciudadVal);
+        setPreviewField(previewServicio, servicioVal);
+
+        let step = 0;
+        let label = 'Comienza tu solicitud';
+
+        if (nombreVal && ciudadVal) {
+          step = 1;
+          label = 'Información personal';
+        }
+        if (step >= 1 && servicioVal) {
+          step = 2;
+          label = 'Servicio seleccionado';
+        }
+        if (step >= 2 && telefonoVal && correoVal && consentimientoVal) {
+          step = 3;
+          label = 'Lista para enviar';
+        }
+
+        const percents = [4, 33, 66, 100];
+        const pct = percents[step];
+
+        if (previewProgressBar) previewProgressBar.style.width = pct + '%';
+        if (previewPct) previewPct.textContent = pct + '%';
+        if (previewStatusText) previewStatusText.textContent = label;
+      };
+
+      ['nombre_completo', 'telefono', 'correo', 'ciudad', 'servicio', 'consentimiento'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('input', updatePreviewCard);
+          el.addEventListener('change', updatePreviewCard);
+        }
+      });
+
+      updatePreviewCard();
+    })();
 
     // Solicita Información — validación y confirmación (sin envío a servicios externos)
     const requestForm = document.getElementById('requestForm');
@@ -2677,6 +3297,22 @@ if (requestForm) {
 
       requestForm.style.display = 'none';
       document.getElementById('formSuccess').style.display = 'block';
+
+      const submittedPreviewCard = document.getElementById('previewCard');
+      if (submittedPreviewCard) {
+        const confirmText = document.getElementById('previewConfirmText');
+        const bar = document.getElementById('previewProgressBar');
+        const pct = document.getElementById('previewPct');
+        const statusText = document.getElementById('previewStatusText');
+        if (confirmText) {
+          confirmText.textContent = `Hemos recibido tu solicitud sobre "${servicio}". Nos pondremos en contacto contigo pronto.`;
+        }
+        if (bar) bar.style.width = '100%';
+        if (pct) pct.textContent = '100%';
+        if (statusText) statusText.textContent = 'Solicitud recibida';
+        submittedPreviewCard.classList.add('is-submitted');
+      }
+
       requestForm.reset();
 
     } catch (error) {
@@ -2684,3 +3320,11 @@ if (requestForm) {
       alert('No se pudo enviar la solicitud. Por favor intenta nuevamente.')
     }  });
 }
+  </script>
+</body>
+</html>
+<style>
+.independent-note {
+    transform: translateY(10px);
+}
+</style>
