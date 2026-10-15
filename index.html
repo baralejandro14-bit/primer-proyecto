@@ -3055,7 +3055,30 @@
           </div>
           <div class="form-group">
             <label for="ciudad">Ciudad donde vive</label>
-            <input type="text" id="ciudad" name="ciudad" placeholder="El Paso, TX" required>
+            <input type="text" id="ciudad" name="ciudad" placeholder="El Paso" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pais">País</label>
+            <div class="select-wrap">
+              <select id="pais" name="pais" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option value="Estados Unidos">Estados Unidos</option>
+                <option value="México">México</option>
+                <option value="Otro">Otro</option>
+              </select>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" name="estado" placeholder="Texas / Chihuahua" required>
+          </div>
+          <div class="form-group">
+            <label for="cp">Código postal</label>
+            <input type="text" id="cp" name="cp" inputmode="numeric" maxlength="10" placeholder="79901">
           </div>
         </div>
 
@@ -3073,6 +3096,56 @@
               <option value="I-864">I-864</option>
               <option value="DS-260">DS-260</option>
               <option value="I-751">I-751</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <div id="bodaFields" class="form-row" style="display:none;">
+          <div class="form-group">
+            <label for="fecha_boda">Fecha que les gustaría para la boda</label>
+            <input type="date" id="fecha_boda" name="fecha_boda">
+          </div>
+          <div class="form-group">
+            <label for="id_mx">Identificación de la pareja mexicana</label>
+            <div class="select-wrap">
+              <select id="id_mx" name="id_mx">
+                <option value="" selected>Selecciona una opción</option>
+                <option value="INE">INE</option>
+                <option value="Pasaporte">Pasaporte</option>
+                <option value="Visa">Visa</option>
+                <option value="Aún no sé">Aún no sé</option>
+              </select>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="id_us">Identificación de la pareja americana</label>
+            <div class="select-wrap">
+              <select id="id_us" name="id_us">
+                <option value="" selected>Selecciona una opción</option>
+                <option value="Texas ID">Texas ID</option>
+                <option value="Licencia de Texas">Licencia de manejo de Texas</option>
+                <option value="De otro estado">ID de otro estado</option>
+                <option value="Aún no sé">Aún no sé</option>
+              </select>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="origen">¿Cómo nos encontraste?</label>
+          <div class="select-wrap">
+            <select id="origen" name="origen" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Grupo de Facebook">Grupo de Facebook</option>
+              <option value="Marketplace">Facebook Marketplace</option>
+              <option value="Página de Facebook">Página de Facebook</option>
+              <option value="Google">Google</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Recomendación">Me lo recomendaron</option>
               <option value="Otro">Otro</option>
             </select>
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
@@ -3431,6 +3504,27 @@
     // Solicita Información — validación y confirmación (sin envío a servicios externos)
     const requestForm = document.getElementById('requestForm');
 
+// Origen del cliente: ?src= en el link (grupos, marketplace, pagina, google, tiktok...)
+const urlSrc = (new URLSearchParams(location.search).get('src') || '').toLowerCase().slice(0, 40);
+let leadSrc = urlSrc;
+try {
+  if (urlSrc) localStorage.setItem('jb_src', urlSrc);
+  else leadSrc = localStorage.getItem('jb_src') || '';
+} catch (err) {}
+const leadRef = (document.referrer || '').slice(0, 200);
+const srcToOrigen = { grupos: 'Grupo de Facebook', marketplace: 'Marketplace', pagina: 'Página de Facebook', facebook: 'Página de Facebook', google: 'Google', tiktok: 'TikTok' };
+const origenEl = document.getElementById('origen');
+if (origenEl && srcToOrigen[leadSrc]) origenEl.value = srcToOrigen[leadSrc];
+
+// Mostrar datos de boda solo cuando eligen Bodas en el Puente
+const servicioSel = document.getElementById('servicio');
+const bodaFields = document.getElementById('bodaFields');
+if (servicioSel && bodaFields) {
+  const toggleBoda = () => { bodaFields.style.display = servicioSel.value === 'BODAS EN EL PUENTE' ? '' : 'none'; };
+  servicioSel.addEventListener('change', toggleBoda);
+  toggleBoda();
+}
+
 if (requestForm) {
   requestForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -3443,7 +3537,15 @@ if (requestForm) {
     const mensaje = document.getElementById('mensaje').value.trim();
     const consentimiento = document.getElementById('consentimiento').checked;
 
-    if (!nombre || !telefono || !correo || !ciudad || !servicio || !consentimiento) {
+    const origen = origenEl ? origenEl.value : '';
+    const pais = (document.getElementById('pais') || {}).value || '';
+    const estado = ((document.getElementById('estado') || {}).value || '').trim();
+    const cp = ((document.getElementById('cp') || {}).value || '').trim();
+    const fecha_boda = (document.getElementById('fecha_boda') || {}).value || '';
+    const id_mx = (document.getElementById('id_mx') || {}).value || '';
+    const id_us = (document.getElementById('id_us') || {}).value || '';
+
+    if (!nombre || !telefono || !correo || !ciudad || !servicio || !origen || !pais || !estado || !consentimiento) {
       alert('Por favor completa todos los campos requeridos y acepta ser contactado.');
       return;
     }
@@ -3462,7 +3564,23 @@ if (requestForm) {
             correo,
             ciudad,
             servicio,
-            mensaje
+            mensaje: [
+              mensaje,
+              '— Ubicación: ' + ciudad + ', ' + estado + ', ' + pais + (cp ? ' CP ' + cp : ''),
+              '— Nos encontró por: ' + origen + (leadSrc ? ' (link: ' + leadSrc + ')' : ''),
+              servicio === 'BODAS EN EL PUENTE'
+                ? '— Boda: fecha ' + (fecha_boda || 'por definir') + ' | ID mexicano: ' + (id_mx || 'no dijo') + ' | ID americano: ' + (id_us || 'no dijo')
+                : ''
+            ].filter(Boolean).join('\n'),
+            origen,
+            pais,
+            estado,
+            cp,
+            src: leadSrc,
+            referrer: leadRef,
+            fecha_boda,
+            id_mx,
+            id_us
           })
         }
       );
